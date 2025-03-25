@@ -1,6 +1,7 @@
 package frontiere;
 
 import controleur.ControlAcheterProduit;
+import personnages.Gaulois;
 
 public class BoundaryAcheterProduit {
 	private ControlAcheterProduit controlAcheterProduit;
@@ -10,29 +11,41 @@ public class BoundaryAcheterProduit {
 	}
 
 	public void acheterProduit(String nomAcheteur) {
-		if (nomAcheteur existe pas) {
-			System.out.println("Je suis désolée"nomAcheteur"mais il faut être un habitant de notre village pour commercer ici.");
-		}else {
-			String produit=Clavier.entrerChaine("Quelle produit voulez vous acheter?");
-			//String produitExist= trouver produit;
-			if (produitExist==null) {
-				System.out.println("Désolé, personne ne vend ce produit au marché");
-			}
-			else {
-				System.out.println(nomAcheteur+" se déplace jusqu'à l'étal du vendeur "+vendeur);
-				System.out.println("Bonjour"+nomAcheteur);
-				int quantite=Clavier.entrerEntier("Combien de fleur voulez-vous acheter?");
-				if (quantité ok) {
-					System.out.println("Panoramix achète " +quantite+produit+" à "+nomVendeur);
-					//-5fleurs au vendeur
-				}else {
-					if(quantité >0 mais quantite>nbFleur){
-					System.out.println(nomAcheteur" veut acheter "+quantite+ produit+", malheureusement"+nomVendeur+" n'en a plus que 3."+nomAcheteur+" achète tout le stock de "+nomVendeur);
-					}else {
-						System.out.println(nomAcheteur"achète "+quantite+produit+", malheureusement il n'y en a plus !");
+		if ((controlAcheterProduit.verifieAcheteur(nomAcheteur)) == null) {
+			System.out.println("Je suis dï¿½solï¿½e" + nomAcheteur
+					+ "mais il faut ï¿½tre un habitant de notre village pour commercer ici.");
+		} else {
+			String produit = Clavier.entrerChaine("Quelle produit voulez vous acheter?");
+			Gaulois[] vendeurProduit = controlAcheterProduit.verifieProduit(produit);
+			if (vendeurProduit == null) {
+				System.out.println("Dï¿½solï¿½, personne ne vend ce produit au marchï¿½");
+			} else {
+				System.out.println("Chez quelle commerÃ§ant voulez-vous acheter des fleurs ?");
+				for (int i = 0; i < vendeurProduit.length; i++) {
+					System.out.println("-" + vendeurProduit[i]);
+				}
+				int indiceVendeur = Clavier.entrerEntier("");
+				Gaulois vendeur = vendeurProduit[indiceVendeur];
+	
+				System.out.println(nomAcheteur + " se dï¿½place jusqu'ï¿½ l'ï¿½tal du vendeur " + vendeur);
+				System.out.println("Bonjour" + nomAcheteur);
+				int quantiteAAcheter = Clavier.entrerEntier("Combien de fleur voulez-vous acheter?");
+				int quantiteAVendre = controlAcheterProduit.donneeQuantite(vendeur);
+				if (quantiteAVendre >= quantiteAAcheter) {
+					System.out.println("Panoramix achï¿½te " + quantiteAAcheter + produit + " ï¿½ " + vendeur);
+					controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
+				} else {
+					if (quantiteAVendre > 0 && quantiteAAcheter > quantiteAVendre) {
+						System.out.println(nomAcheteur + " veut acheter " + quantiteAAcheter + produit + ", malheureusement"
+								+ vendeur + " n'en a plus que " + quantiteAVendre + "." + nomAcheteur
+								+ " achï¿½te tout le stock de " + vendeur);
+						controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
+					} else {
+						System.out.println(
+								nomAcheteur + " achï¿½te " + quantiteAAcheter + produit + ", malheureusement il n'y en a plus !");
 					}
 				}
 			}
-		}	
+		}
 	}
 }
