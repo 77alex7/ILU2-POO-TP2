@@ -33,8 +33,8 @@ public class ControlAcheterProduit {
 	public int acheterProduit(String vendeur, int quantiteAAcheter) {
 		Gaulois sVendeur=village.trouverHabitant(vendeur);
 		Etal etal=village.rechercherEtal(sVendeur);
-		int quantiteAcheter=etal.acheterProduit(quantiteAAcheter);
-		return quantiteAcheter;
+		int vendu=etal.acheterProduit(quantiteAAcheter);
+		return vendu;
 		//dans etal.acheterProduit on a pas le cas ou la quantité a acheter = quantité présente et on a pas la cas ou la quantité est supp a la quantite
 	}
 }
