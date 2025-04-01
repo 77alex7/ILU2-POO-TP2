@@ -33,8 +33,9 @@ public class ControlAcheterProduit {
 	public int acheterProduit(String vendeur, int quantiteVendu) {
 		Gaulois sVendeur=village.trouverHabitant(vendeur);
 		Etal etal=village.rechercherEtal(sVendeur);
-		int quantite=etal.getQuantite();
-		quantite=quantite-quantiteVendu;
-		return quantite;
+//		int quantite=etal.getQuantite();
+//		quantite=quantite-quantiteVendu;
+		int quantiteAcheter=etal.acheterProduit(quantiteVendu);
+		return quantiteAcheter;
 	}
 }

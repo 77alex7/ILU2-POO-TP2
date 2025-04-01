@@ -32,17 +32,18 @@ public class BoundaryAcheterProduit {
 				int quantiteAAcheter = Clavier.entrerEntier("Combien de fleur voulez-vous acheter?");
 				int quantiteAVendre = controlAcheterProduit.donneeQuantite(vendeur);
 				if (quantiteAVendre >= quantiteAAcheter) {
-					System.out.println("Panoramix ach�te " + quantiteAAcheter + produit + " � " + vendeur);
-					controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
+					int quantiteVendu=controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
+					System.out.println("Panoramix ach�te " + quantiteVendu + produit + " � " + vendeur);
 				} else {
 					if (quantiteAVendre > 0 && quantiteAAcheter > quantiteAVendre) {
-						System.out.println(nomAcheteur + " veut acheter " + quantiteAAcheter + produit + ", malheureusement"
+						int quantiteVendu=controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
+						System.out.println(nomAcheteur + " veut acheter " + quantiteVendu + produit + ", malheureusement"
 								+ vendeur + " n'en a plus que " + quantiteAVendre + "." + nomAcheteur
 								+ " ach�te tout le stock de " + vendeur);
-						controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
 					} else {
+						int quantiteVendu=controlAcheterProduit.acheterProduit(vendeur.toString(), quantiteAAcheter);
 						System.out.println(
-								nomAcheteur + " ach�te " + quantiteAAcheter + produit + ", malheureusement il n'y en a plus !");
+								nomAcheteur + " ach�te " + quantiteVendu + produit + ", malheureusement il n'y en a plus !");
 					}
 				}
 			}
